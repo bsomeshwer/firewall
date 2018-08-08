@@ -1,0 +1,14 @@
+{
+    "name": "someshwer/firewall",
+    "description": "This package allows us to protect our website from malicious attacks by providing access to only whitelist ipaddresses or by blocking ip addresses by blacklist.",
+    "type": "standard",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Someshwer Bandapally",
+            "email": "bsomeshwer89@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
