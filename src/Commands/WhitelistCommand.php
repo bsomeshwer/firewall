@@ -34,7 +34,7 @@ class WhitelistCommand extends Command
      * Execute the console command.
      * This command returns and displays all white listed ip addresses.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -42,13 +42,14 @@ class WhitelistCommand extends Command
         $headers = ['SNO', 'IP Address', 'Blacklist'];
         $ip_list = $this->formTableHeaders($white_list);
         $this->table($headers, $ip_list);
+        $this->info('Done!!');
     }
 
     /**
      * Decorate values as table with headers
      *
      * @param array $white_list
-     * @return $ip_list
+     * @return array $ip_list
      */
     private function formTableHeaders($white_list)
     {

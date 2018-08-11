@@ -32,7 +32,7 @@ class BlackListCommand extends Command
      * Execute the console command.
      * This command returns and displays all black listed ip addresses.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -40,13 +40,14 @@ class BlackListCommand extends Command
         $headers = ['SNO', 'IP Address', 'Blacklist'];
         $ip_list = $this->formTableHeaders($black_list);
         $this->table($headers, $ip_list);
+        $this->info('Done!!');
     }
 
     /**
      * Decorate values as table with headers
      *
      * @param array $black_list
-     * @return $ip_list
+     * @return array $ip_list
      */
     private function formTableHeaders($black_list)
     {

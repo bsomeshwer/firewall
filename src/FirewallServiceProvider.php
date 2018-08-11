@@ -1,6 +1,11 @@
 <?php namespace Someshwer\Firewall;
 
 use Illuminate\Support\ServiceProvider;
+use Someshwer\Firewall\Commands\BlackListCommand;
+use Someshwer\Firewall\Commands\WhitelistCommand;
+use Someshwer\Firewall\Middleware\FirewallMiddleware;
+use Someshwer\Firewall\src\Commands\AcceptListCommand;
+use Someshwer\Firewall\src\Commands\IgnoreListCommand;
 
 class FirewallServiceProvider extends ServiceProvider
 {
@@ -11,15 +16,17 @@ class FirewallServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/config/firewall.php' => config_path('firewall.php')]);
+        $this->publishes([__DIR__ . '/config/firewall.php' => config_path('firewall_old.php')]);
 
         $this->loadRoutesFrom(__DIR__ . '\routes\routes.php');
 
-        $this->app['router']->aliasMiddleware('firewall', \Someshwer\Firewall\Middleware\FirewallMiddleware::class);
+        // $this->app['router']->aliasMiddleware('firewall', FirewallMiddleware::class);
 
         $this->commands([
-            \Someshwer\Firewall\Commands\BlackListCommand::class,
-            \Someshwer\Firewall\Commands\WhitelistCommand::class,
+            BlackListCommand::class,
+            WhitelistCommand::class,
+            AcceptListCommand::class,
+            IgnoreListCommand::class
         ]);
 
         $this->publishes([__DIR__ . '/Migrations' => $this->app->databasePath() . '/migrations'], 'migrations');
