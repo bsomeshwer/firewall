@@ -2,6 +2,12 @@
 
 use Illuminate\Console\Command;
 
+/**
+ * This class displays all the black listed ip addresses on console
+ *
+ * Class BlackListCommand
+ * @package Someshwer\Firewall\Commands
+ */
 class BlackListCommand extends Command
 {
     /**

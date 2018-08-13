@@ -4,9 +4,12 @@ use Illuminate\Support\ServiceProvider;
 use Someshwer\Firewall\Commands\BlackListCommand;
 use Someshwer\Firewall\Commands\WhitelistCommand;
 use Someshwer\Firewall\Middleware\FirewallMiddleware;
-use Someshwer\Firewall\src\Commands\AcceptListCommand;
-use Someshwer\Firewall\src\Commands\IgnoreListCommand;
+use Someshwer\Firewall\src\Commands\AcceptAndIgnoreListCommand;
 
+/**
+ * Class FirewallServiceProvider
+ * @package Someshwer\Firewall
+ */
 class FirewallServiceProvider extends ServiceProvider
 {
     /**
@@ -25,8 +28,7 @@ class FirewallServiceProvider extends ServiceProvider
         $this->commands([
             BlackListCommand::class,
             WhitelistCommand::class,
-            AcceptListCommand::class,
-            IgnoreListCommand::class
+            AcceptAndIgnoreListCommand::class
         ]);
 
         $this->publishes([__DIR__ . '/Migrations' => $this->app->databasePath() . '/migrations'], 'migrations');

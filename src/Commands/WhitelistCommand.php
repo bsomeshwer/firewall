@@ -1,9 +1,13 @@
-<?php
-
-namespace Someshwer\Firewall\Commands;
+<?php namespace Someshwer\Firewall\Commands;
 
 use Illuminate\Console\Command;
 
+/**
+ * This class displays all the white listed ip addresses on console
+ *
+ * Class WhitelistCommand
+ * @package Someshwer\Firewall\Commands
+ */
 class WhitelistCommand extends Command
 {
     /**

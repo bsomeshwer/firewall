@@ -47,8 +47,17 @@ class FirewallMiddleware
      */
     private $redirect_url;
 
+    /**
+     * Determines request to be logged or not
+     *
+     * @var \Illuminate\Config\Repository|mixed
+     */
     private $log_request;
 
+    /**
+     * FirewallMiddleware constructor.
+     * @param IPFilter $ipFilter
+     */
     public function __construct(IPFilter $ipFilter)
     {
         $this->ip_filter = $ipFilter;
@@ -58,6 +67,13 @@ class FirewallMiddleware
         $this->log_request = config('firewall.log_request');
     }
 
+    /**
+     * This method assigns and stores the request
+     * data into a firewall_log table
+     *
+     * @param $request
+     * @return FirewallLog
+     */
     private function logRequest($request)
     {
         $firewall_log = new FirewallLog;
@@ -206,6 +222,13 @@ class FirewallMiddleware
         return null;
     }
 
+    /**
+     * Redirects to a specified url if given ip is not white listed
+     *
+     * @param $request
+     * @param $log_request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|null
+     */
     private function redirectIfNotWhiteListed($request, $log_request)
     {
         // Checking request ip address is present in whitelist or not
@@ -233,19 +256,25 @@ class FirewallMiddleware
         if ($this->log_request) {
             $log_request = $this->logRequest($request);
         }
-
         // Checking if blacklist enabled or not
         if ($this->ip_filter->getFilterType() == 'BLACKLIST') {
             $this->setDefaultsToBlackListAndAccepted($log_request);
             $this->saveLogForBlackAndAcceptList($request, $log_request, $this->ip_filter);
-            $this->redirectIfBlocked($request);
+            $redirect_response = $this->redirectIfBlocked($request);
+            if ($redirect_response) {
+                return $redirect_response;
+            }
         }
-
         // Checking if whitelist enabled or not
         if ($this->ip_filter->getFilterType() == 'WHITELIST') {
             $this->setValuesToWhiteListedAndIgnored($request, $log_request);
-            $this->redirectIfRejectListed($request, $log_request);
-            $this->redirectIfNotWhiteListed($request, $log_request);
+            $redirect_rej_response = $this->redirectIfRejectListed($request, $log_request);
+            $redirect_non_white_response = $this->redirectIfNotWhiteListed($request, $log_request);
+            $redirect_response = ($redirect_rej_response) ? $redirect_rej_response :
+                (($redirect_non_white_response) ? $redirect_non_white_response : null);
+            if ($redirect_response) {
+                return $redirect_response;
+            }
         }
         // Proceeding further with the actual request
         return $next($request);

@@ -8,11 +8,13 @@
 class Firewall
 {
 
+    /**
+     * Firewall constructor.
+     */
     public function __construct()
     {
-        
-    }
 
+    }
 
 
 }
