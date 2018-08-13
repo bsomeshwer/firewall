@@ -5,7 +5,7 @@ Route::get('sayHello', function () {
 });
 
 
-Route::get('testModel', function (FirewallIPAddress $fireIp) {
+Route::get('testModel', function () {
 
     // $fireIp->create(['path'=>'to']);
 
