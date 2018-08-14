@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 /**
  * Class CreateFirewallRequestsLogTable
  */
-class CreateFirewallRequestsLogTable extends Migration
+class CreateFirewallLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateFirewallRequestsLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('firewall_requests_log', function (Blueprint $table) {
+        Schema::create('firewall_log', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path', 25);
             $table->string('method', 25);
@@ -31,7 +31,7 @@ class CreateFirewallRequestsLogTable extends Migration
             $table->boolean('black_listed')->nullable();
             $table->boolean('white_listed')->nullable();
             $table->boolean('accepted')->nullable();
-            $table->boolean('ignored')->nullable();
+            $table->boolean('rejected')->nullable();
             $table->longText('all_request_data')->nullable();
             $table->timestamps();
         });

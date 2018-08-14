@@ -48,7 +48,7 @@ return [
     /**
      * Add ip addresses those you want reject even if they are in whitelist.
      */
-    'ignore' => [
+    'reject' => [
         '192.0.0.3', '192.0.0.4', '192.0.0.5',
     ],
 

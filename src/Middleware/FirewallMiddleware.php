@@ -20,11 +20,11 @@ use Someshwer\Firewall\src\Entities\FirewallLog;
 class FirewallMiddleware
 {
     /**
-     * The ip addresses defined in this variable can be ignored even if they white listed.
+     * The ip addresses defined in this variable can be rejected even if they white listed.
      *
      * @var array
      */
-    protected $ignore;
+    protected $reject;
 
     /**
      * The ip addresses defined in this variable can be acceptable even if they are blacklisted.
@@ -63,7 +63,7 @@ class FirewallMiddleware
         $this->ip_filter = $ipFilter;
         $this->redirect_url = config('firewall.redirect_url');
         $this->accept = config('firewall.accept');
-        $this->ignore = config('firewall.ignore');
+        $this->reject = config('firewall.reject');
         $this->log_request = config('firewall.log_request');
     }
 
@@ -112,16 +112,16 @@ class FirewallMiddleware
     }
 
     /**
-     * Checking ignore list whether it has current request ip or not
+     * Checking reject list whether it has current request ip or not
      *
      * @param object $request
      * @return bool
      */
-    private function checkIgnoreList($request)
+    private function checkRejectList($request)
     {
         $status = false;
-        if (count($this->ignore) > 0) {
-            if (in_array($request->ip(), $this->ignore)) {
+        if (count($this->reject) > 0) {
+            if (in_array($request->ip(), $this->reject)) {
                 $status = true;
             }
         }
@@ -190,12 +190,12 @@ class FirewallMiddleware
      * @param $request
      * @param $log_request
      */
-    private function setValuesToWhiteListedAndIgnored($request, $log_request)
+    private function setValuesToWhiteListedAndRejected($request, $log_request)
     {
         if ($this->ip_filter->filterWhiteList($request)) {
             if ($log_request) {
                 $log_request->fill(['white_listed' => true]);
-                $log_request->fill(['ignored' => false]);
+                $log_request->fill(['rejected' => false]);
                 $log_request->save();
             }
         }
@@ -210,10 +210,10 @@ class FirewallMiddleware
      */
     private function redirectIfRejectListed($request, $log_request)
     {
-        // Checking ignore list if whitelist is enabled
-        if ($this->checkIgnoreList($request)) {
+        // Checking reject list if whitelist is enabled
+        if ($this->checkRejectList($request)) {
             if ($log_request) {
-                $log_request->fill(['ignored' => true]);
+                $log_request->fill(['rejected' => true]);
                 $log_request->save();
             }
             // If present redirect the request custom redirection url
@@ -267,7 +267,7 @@ class FirewallMiddleware
         }
         // Checking if whitelist enabled or not
         if ($this->ip_filter->getFilterType() == 'WHITELIST') {
-            $this->setValuesToWhiteListedAndIgnored($request, $log_request);
+            $this->setValuesToWhiteListedAndRejected($request, $log_request);
             $redirect_rej_response = $this->redirectIfRejectListed($request, $log_request);
             $redirect_non_white_response = $this->redirectIfNotWhiteListed($request, $log_request);
             $redirect_response = ($redirect_rej_response) ? $redirect_rej_response :

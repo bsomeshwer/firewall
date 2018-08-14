@@ -13,7 +13,7 @@ class FirewallLog extends Model
      *
      * @var string
      */
-    protected $table = 'firewall_requests_log';
+    protected $table = 'firewall_log';
 
     /**
      * Table columns
@@ -21,7 +21,7 @@ class FirewallLog extends Model
      * @var array
      */
     protected $fillable = ['path', 'method', 'uri', 'url', 'full_url', 'query', 'file_name', 'http_host',
-        'http_user_agent', 'ip_address', 'black_listed', 'white_listed', 'accepted', 'ignored', 'all_request_data'];
+        'http_user_agent', 'ip_address', 'black_listed', 'white_listed', 'accepted', 'rejected', 'all_request_data'];
 
     /**
      * Type casting
@@ -32,7 +32,7 @@ class FirewallLog extends Model
         'black_listed' => 'boolean',
         'white_listed' => 'boolean',
         'accepted' => 'boolean',
-        'ignored' => 'boolean',
+        'rejected' => 'boolean',
         'query' => 'json',
         'all_request_data' => 'json'
     ];

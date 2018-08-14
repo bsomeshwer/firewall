@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
  * This command returns all accept listed and reject listed
  * ip addresses based on the option provided.
  */
-class AcceptAndIgnoreListCommand extends Command
+class AcceptAndRejectListCommand extends Command
 {
 
     /**
@@ -61,7 +61,7 @@ class AcceptAndIgnoreListCommand extends Command
             $headers = ['SNO', 'IP Address', 'Accept Listed'];
         }
         if ($option == 'reject') {
-            $list = config('firewall.ignore');
+            $list = config('firewall.reject');
             $headers = ['SNO', 'IP Address', 'Reject Listed'];
         }
         $ip_list = $this->formTableHeaders($list, $option);
