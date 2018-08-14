@@ -71,6 +71,18 @@ return [
      * If set tu TRUE every incoming request will be captured
      * and stored in firewall_requests_log table.
      */
-    'log_request' => true
+    'log_request' => true,
+
+    /**
+     * Enables firewall log pagination if set to TRUE.
+     * To disable pagination set it to FALSE
+     */
+    'firewall_log_pagination' => true,
+
+    /**
+     * Enables firewall requests log pagination if set to TRUE.
+     * To disable pagination set it to FALSE
+     */
+    'firewall_requests_log_pagination' => true
 
 ];

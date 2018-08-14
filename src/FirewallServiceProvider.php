@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Someshwer\Firewall\Commands\BlackListCommand;
 use Someshwer\Firewall\Commands\WhitelistCommand;
+use Someshwer\Firewall\Lib\Firewall;
 use Someshwer\Firewall\Middleware\FirewallMiddleware;
 use Someshwer\Firewall\src\Commands\AcceptAndRejectListCommand;
 
@@ -12,6 +13,19 @@ use Someshwer\Firewall\src\Commands\AcceptAndRejectListCommand;
  */
 class FirewallServiceProvider extends ServiceProvider
 {
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind('firewall', function () {
+            return new Firewall();
+        });
+    }
+
     /**
      * Bootstrap any application services.
      *
@@ -34,13 +48,4 @@ class FirewallServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/Migrations' => $this->app->databasePath() . '/migrations'], 'migrations');
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 }
