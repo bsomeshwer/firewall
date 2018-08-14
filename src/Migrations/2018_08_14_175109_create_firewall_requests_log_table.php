@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 /**
  * Class CreateFirewallRequestsLogTable
  */
-class CreateFirewallLogTable extends Migration
+class CreateFirewallRequestsLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateFirewallLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('firewall_log', function (Blueprint $table) {
+        Schema::create('firewall_requests_log', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path', 25);
             $table->string('method', 25);
@@ -28,10 +28,6 @@ class CreateFirewallLogTable extends Migration
             $table->string('http_host', 250);
             $table->string('http_user_agent', 250);
             $table->string('ip_address', 25);
-            $table->boolean('black_listed')->nullable();
-            $table->boolean('white_listed')->nullable();
-            $table->boolean('accepted')->nullable();
-            $table->boolean('rejected')->nullable();
             $table->longText('all_request_data')->nullable();
             $table->timestamps();
         });
@@ -44,6 +40,6 @@ class CreateFirewallLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('firewall_log');
+        Schema::dropIfExists('firewall_requests_log');
     }
 }

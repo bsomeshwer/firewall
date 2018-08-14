@@ -64,7 +64,7 @@ class FirewallMiddleware
         $this->redirect_url = config('firewall.redirect_url');
         $this->accept = config('firewall.accept');
         $this->reject = config('firewall.reject');
-        $this->log_request = config('firewall.log_request');
+        $this->log_request = config('firewall.firewall_log');
     }
 
     /**

@@ -3,7 +3,12 @@
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Firewall model
+ * Class FirewallLog
+ * @package Someshwer\Firewall\src\Entities
+ * @author Someshwer
+ * Date:10-08-2018
+ *
+ * FirewallLog model
  */
 class FirewallLog extends Model
 {

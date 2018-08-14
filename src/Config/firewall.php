@@ -61,7 +61,15 @@ return [
 
     /**
      * This enables request logging mechanism.
-     * If set tu TRUE every incoming request will be captured and stored in request_log table.
+     * If set tu TRUE the specified route request will be captured
+     * and stored in firewall_log table along with white and black list data.
+     */
+    'firewall_log' => true,
+
+    /**
+     * This enables request logging mechanism.
+     * If set tu TRUE every incoming request will be captured
+     * and stored in firewall_requests_log table.
      */
     'log_request' => true
 
