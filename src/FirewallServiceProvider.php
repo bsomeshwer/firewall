@@ -6,6 +6,7 @@ use Someshwer\Firewall\Commands\WhitelistCommand;
 use Someshwer\Firewall\Lib\Firewall;
 use Someshwer\Firewall\Middleware\FirewallMiddleware;
 use Someshwer\Firewall\src\Commands\AcceptAndRejectListCommand;
+use Someshwer\Firewall\src\Repo\FirewallRepository;
 
 /**
  * Class FirewallServiceProvider
@@ -22,7 +23,7 @@ class FirewallServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('firewall', function () {
-            return new Firewall();
+            return new Firewall(new FirewallRepository());
         });
     }
 
