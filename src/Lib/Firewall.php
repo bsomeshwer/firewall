@@ -153,14 +153,42 @@ class Firewall
         return array_collapse($result_list);
     }
 
-    public function firewallLog()
+    /**
+     * Returns firewall log data along with pagination if pagination is enabled in configuration.
+     *
+     * @param null $from_date
+     * @param null $to_date
+     * @return mixed|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
+     */
+    public function firewallLog($from_date = null, $to_date = null)
     {
-        //TODO:: Also accept dates if dates are present
+        $log = $this->repo->getLogInstance();
+        if ((($from_date != null) || ($to_date != null))) {
+            if (!$this->repo->validateDates($from_date, $to_date)) {
+                $log = $this->repo->addWhereBetweenClause($log, $from_date, $to_date);
+            }
+        }
+        $log = $this->repo->addPagination($log);
+        return $log;
     }
 
-    public function firewallRequestsLog()
+    /**
+     * Returns firewall requests log data along with pagination if pagination is enabled in configuration.
+     *
+     * @param null $from_date
+     * @param null $to_date
+     * @return mixed|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
+     */
+    public function firewallRequestsLog($from_date = null, $to_date = null)
     {
-        //TODO:: Also accept dates if dates are present
+        $log = $this->repo->getLogInstance('request_log');
+        if ((($from_date != null) || ($to_date != null))) {
+            if (!$this->repo->validateDates($from_date, $to_date)) {
+                $log = $this->repo->addWhereBetweenClause($log, $from_date, $to_date);
+            }
+        }
+        $log = $this->repo->addPagination($log, 'request_log');
+        return $log;
     }
 
 
