@@ -1,4 +1,5 @@
 # Firewall
+
 Firewall enables us to whitelist and blacklist IP addresses for LARAVEL applications. 
 This package detects an unknown ip addresses using filtering mechanism based on  
 whitelist and blacklist arrays and configuration options.
@@ -250,9 +251,4 @@ and whitelist statuses information.
 
 Firewall request log tracks every incoming request and stores only request and response information 
 into the database table called 'firewall_requests_log'.
-
-
-
-
-
 
