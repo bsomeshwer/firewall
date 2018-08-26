@@ -50,47 +50,49 @@ class IPFilter
     /**
      * Returns one of the filter type i.e; 'BLACKLIST', 'WHITELIST', or 'NONE'
      *
-     * @return $list
+     * @return string $list
      */
     public function getFilterType()
     {
-        $list = $this->none;
-        if ((config('firewall.whitelist_enabled') == true) && (config('firewall.blacklist_enabled') == true)) {
-            $list = $this->black_list;
+        $filter_type = $this->none;
+        if (config('firewall.enable_whitelist') && config('firewall.enable_blacklist')) {
+            $filter_type = $this->black_list;
         }
-        if (config('firewall.whitelist_enabled') == true && config('firewall.blacklist_enabled') == false) {
-            $list = $this->white_list;
+        if (config('firewall.enable_whitelist') && (!config('firewall.enable_blacklist'))) {
+            $filter_type = $this->white_list;
         }
-        if (config('firewall.blacklist_enabled') == true && config('firewall.whitelist_enabled') == false) {
-            $list = $this->black_list;
+        if (config('firewall.enable_blacklist') && (!config('firewall.enable_whitelist'))) {
+            $filter_type = $this->black_list;
         }
-        return $list;
+        return $filter_type;
     }
 
     /**
      * Filters whitelist and returns 'true' if current request ip is not in whitelist
      *
      * @param object $request
-     * @return void
+     * @return bool
      */
     public function filterWhiteList($request)
     {
-        if (!in_array($request->ip(), config('firewall.whitelist'))) {
+        if (in_array($request->ip(), config('firewall.whitelist'))) {
             return $this->block;
         }
+        return false;
     }
 
     /**
      * Filters blacklist and returns 'true' if current request ip is available in blacklist
      *
      * @param [type] $request
-     * @return void
+     * @return bool
      */
     public function filterBlackList($request)
     {
         if (in_array($request->ip(), config('firewall.blacklist'))) {
             return $this->block;
         }
+        return false;
     }
 
 }
