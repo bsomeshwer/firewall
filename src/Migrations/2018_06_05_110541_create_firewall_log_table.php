@@ -23,7 +23,7 @@ class CreateFirewallLogTable extends Migration
             $table->string('url', 250);
             $table->string('uri', 250);
             $table->string('full_url', 250);
-            $table->longText('query');
+            $table->longText('query')->nullable();
             $table->string('file_name', 250);
             $table->string('http_host', 250);
             $table->string('http_user_agent', 250);

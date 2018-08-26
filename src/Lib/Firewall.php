@@ -182,7 +182,7 @@ class Firewall
      * @param null $to_date
      * @return mixed|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
      */
-    public function firewallLog($from_date = null, $to_date = null)
+    public function log($from_date = null, $to_date = null)
     {
         $log = $this->repo->getLogInstance();
         if ((($from_date != null) || ($to_date != null))) {
@@ -201,7 +201,7 @@ class Firewall
      * @param null $to_date
      * @return mixed|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
      */
-    public function firewallRequestsLog($from_date = null, $to_date = null)
+    public function requestLog($from_date = null, $to_date = null)
     {
         $log = $this->repo->getLogInstance('request_log');
         if ((($from_date != null) || ($to_date != null))) {

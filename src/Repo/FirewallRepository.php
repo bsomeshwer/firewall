@@ -123,8 +123,8 @@ class FirewallRepository
      */
     public function addWhereBetweenClause($log, $from_date, $to_date)
     {
-        $from = Carbon::createFromFormat('Y-m-d', $from_date);
-        $to = Carbon::createFromFormat('Y-m-d', $to_date);
+        $from = Carbon::createFromFormat('Y-m-d', $from_date)->format('Y-m-d');
+        $to = Carbon::createFromFormat('Y-m-d', $to_date)->format('Y-m-d');
         return $log->whereBetween(DB::raw('DATE(`created_at`)'), [$from, $to]);
     }
 

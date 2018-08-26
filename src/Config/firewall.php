@@ -77,12 +77,18 @@ return [
      * Enables firewall log pagination if set to TRUE.
      * To disable pagination set it to FALSE
      */
-    'firewall_log_pagination' => true,
+    'firewall_log_pagination' => [
+        'enabled' => true,
+        'per_page' => 20
+    ],
 
     /**
      * Enables firewall requests log pagination if set to TRUE.
      * To disable pagination set it to FALSE
      */
-    'firewall_requests_log_pagination' => true
+    'firewall_requests_log_pagination' => [
+        'enabled' => true,
+        'per_page' => 20
+    ]
 
 ];
