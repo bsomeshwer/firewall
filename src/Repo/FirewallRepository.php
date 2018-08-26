@@ -147,4 +147,59 @@ class FirewallRepository
         return $is_pagination ? $log->paginate($records_per_page) : $log->get();
     }
 
+    /**
+     * Fetches unique ip addresses.
+     *
+     * @return array
+     */
+    public function getUniqueIpAddresses()
+    {
+        $ip_addresses = array_merge_recursive(config('firewall.whitelist'), config('firewall.blacklist'),
+            config('firewall.accept'), config('firewall.reject'));
+        $unique_ip_addresses = array_unique($ip_addresses);
+        return $unique_ip_addresses;
+    }
+
+    /**
+     * Initializes ip status list with default values.
+     *
+     * @param $ip_address
+     * @return array
+     */
+    private function initializeIpStatusList($ip_address)
+    {
+        $ip_statuses = [
+            'ip_address' => $ip_address,
+            'in_whitelist' => false,
+            'in_blacklist' => false,
+            'in_accept_list' => false,
+            'in_reject_list' => false
+        ];
+        return $ip_statuses;
+    }
+
+    /**
+     * Fetches the statuses for ip addresses
+     *
+     * @param $ip_address
+     * @return array
+     */
+    public function getIpStatus($ip_address)
+    {
+        $initialized_list = $this->initializeIpStatusList($ip_address);
+        if (in_array($ip_address, config('firewall.whitelist'))) {
+            $initialized_list['in_whitelist'] = true;
+        }
+        if (in_array($ip_address, config('firewall.blacklist'))) {
+            $initialized_list['in_blacklist'] = true;
+        }
+        if (in_array($ip_address, config('firewall.accept'))) {
+            $initialized_list['in_accept_list'] = true;
+        }
+        if (in_array($ip_address, config('firewall.reject'))) {
+            $initialized_list['in_reject_list'] = true;
+        }
+        return $initialized_list;
+    }
+
 }
