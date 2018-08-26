@@ -208,9 +208,6 @@ This function also accepts date parameters. If 'from date' and 'to date' is give
 
 The date format must be 'Y-m-d'. For example: If the from date is 12-Jan-2018 then form_date must be provided as '2018-01-12'.
 
-    * If wrong date format is given then all the records will be returned irrespective of dates.
-
-
     #Firewall::requestLog();
 
 This method returns all requests log records from firewall_request_log table. These results can also be paginated. The 'firewall_request_log_pagination.enabled' option must be set to TRUE for paginating results. In order to set the number of records per page then must use 'firewall_request_log_pagination.per_page' config option.
