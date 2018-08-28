@@ -46,6 +46,8 @@ class FirewallServiceProvider extends ServiceProvider
             AcceptAndRejectListCommand::class
         ]);
 
+        $this->loadViewsFrom(__DIR__ . '/Resources/views', 'package_redirect');
+
         $this->publishes([__DIR__ . '/Migrations' => $this->app->databasePath() . '/migrations'], 'migrations');
     }
 

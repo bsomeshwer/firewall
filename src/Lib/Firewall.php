@@ -149,30 +149,21 @@ class Firewall
         return array_collapse($result_list);
     }
 
+    /**
+     * Returns all ip addresses with their statuses.
+     *
+     * @return array
+     */
     public function getAllIpAddresses()
     {
-        //TODO:: to do
-    }
-
-    public function getAllIpAddressesOld()
-    {
-        $common_list = array_intersect($this->whitelist, $this->blacklist, $this->accept_list, $this->reject_list);
-        $white_list = array_diff($this->whitelist, $common_list);
-        $black_list = array_diff($this->blacklist, $common_list);
-        $accept_list = array_diff($this->accept_list, $common_list);
-        $reject_list = array_diff($this->reject_list, $common_list);
-        $list_groups = [
-            'white' => $white_list,
-            'black' => $black_list,
-            'accept' => $accept_list,
-            'reject' => $reject_list,
-            'common' => $common_list
-        ];
-        $result_list = [];
-        foreach ($list_groups as $list_type => $list_group) {
-            $result_list[] = $this->repo->getList($list_group, 4, $list_type);
+        $ip_addresses = $this->repo->getUniqueIpAddresses();
+        $ip_list_with_statuses = [];
+        $index = 0;
+        foreach ($ip_addresses as $ip_address) {
+            $ip_list_with_statuses[] = $this->repo->getIpStatus($ip_address);
+            $index++;
         }
-        return array_collapse($result_list);
+        return $ip_list_with_statuses;
     }
 
     /**
