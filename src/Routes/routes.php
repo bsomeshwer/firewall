@@ -25,3 +25,10 @@ Route::get('firewall/info', function () {
     ];
 
 });
+
+
+Route::get('firewall/redirect', function () {
+
+    return view('package_redirect::redirect_view');
+    
+});
