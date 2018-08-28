@@ -1,14 +1,40 @@
 {
-    "name": "someshwer/firewall",
-    "description": "This package allows us to protect our website from malicious attacks by providing access to only whitelist ipaddresses or by blocking ip addresses by blacklist.",
-    "type": "standard",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Someshwer Bandapally",
-            "email": "bsomeshwer89@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+  "name": "someshwer/firewall",
+  "description": "This package allows us to protect our website from un authorized users by providing access to only whitelisted ip addresses or by blocking ip addresses by blacklist.",
+  "type": "composer-plugin",
+  "keywords": [
+    "firewall",
+    "block",
+    "blacklist",
+    "whitelist"
+  ],
+  "homepage": "https://github.com/bsomeshwer/firewall",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Someshwer Bandapally",
+      "email": "bsomeshwer89@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "support": {
+    "issues": "https://github.com/bsomeshwer/firewall/issues",
+    "source": "https://github.com/bsomeshwer/firewall"
+  },
+  "require": {
+    "php": "^5.4 || ^7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.7|>=5.0 <5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Someshwer\\Firewall\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Someshwer\\Firewall\\Tests\\": "src/tests"
+    }
+  }
 }
