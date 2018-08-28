@@ -57,7 +57,7 @@ return [
      *
      * Note:: Here you can also specify your own custom url
      */
-    'redirect_url' => '/',
+    'redirect_url' => '/firewall/unauthorized/redirect',
 
     /**
      * This enables request logging mechanism.

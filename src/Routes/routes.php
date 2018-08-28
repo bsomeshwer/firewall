@@ -27,8 +27,8 @@ Route::get('firewall/info', function () {
 });
 
 
-Route::get('firewall/redirect', function () {
+Route::get('firewall/unauthorized/redirect', function () {
 
     return view('package_redirect::redirect_view');
-    
+
 });
