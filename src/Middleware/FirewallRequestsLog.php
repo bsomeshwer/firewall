@@ -1,6 +1,8 @@
 <?php namespace Someshwer\Firewall\Middleware;
 
 use Closure;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Someshwer\Firewall\src\Entities\FirewallRequestsLogModel;
 
 /**
@@ -37,22 +39,25 @@ class FirewallRequestsLog
      */
     public function handle($request, Closure $next)
     {
+        $firewall_requests_log = new FirewallRequestsLogModel();
         if ($this->log_request == true) {
-            $this->prepareAndSaveLogData($request);
+            $firewall_requests_log = $this->prepareAndSaveLogData($request, $firewall_requests_log);
         }
-        return $next($request);
+        $response = $next($request);
+        $this->logResponseData($response, $firewall_requests_log);
+        return $response;
     }
 
     /**
      * @param $request
+     * @param $firewall_requests_log
      * @return FirewallRequestsLogModel
      *
      * Prepares request data to be stored in a table.
      * And stores prepared data in a table.
      */
-    private function prepareAndSaveLogData($request)
+    private function prepareAndSaveLogData($request, $firewall_requests_log)
     {
-        $firewall_requests_log = new FirewallRequestsLogModel();
         $firewall_requests_log->fill([
             'path' => $request->path(),
             'url' => $request->url(),
@@ -69,4 +74,24 @@ class FirewallRequestsLog
         $firewall_requests_log->save();
         return $firewall_requests_log;
     }
+
+    private function prepareResponseData()
+    {
+
+    }
+
+    /**
+     * This logs and stores the response data to firewall_requests_log table.
+     *
+     * @param $response
+     * @param $firewall_requests_log
+     * @return mixed
+     */
+    private function logResponseData($response, $firewall_requests_log)
+    {
+        $firewall_requests_log->response_data = ($response instanceof JsonResponse) ? $response : null;
+        $firewall_requests_log->save();
+        return $firewall_requests_log;
+    }
+
 }

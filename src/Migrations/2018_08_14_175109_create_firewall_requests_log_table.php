@@ -29,6 +29,7 @@ class CreateFirewallRequestsLogTable extends Migration
             $table->string('http_user_agent', 250);
             $table->string('ip_address', 25);
             $table->longText('all_request_data')->nullable();
+            $table->longText('response')->nullable();
             $table->timestamps();
         });
     }
