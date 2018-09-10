@@ -34,17 +34,18 @@ class FirewallRequestsLogModel extends Model
      */
     protected $casts = [
         'query' => 'json',
-        'all_request_data' => 'json'
+        'all_request_data' => 'json',
+        'response_data' => 'json'
     ];
 
-    public function setResponseDataAttribute($value)
+    /*public function setResponseDataAttribute($value)
     {
         $this->attributes['response_data'] = ($value == null) ? null : serialize($value);
-    }
+    }*/
 
-    public function getResponseDataAttribute($value)
+    /*public function getResponseDataAttribute($value)
     {
         return ($value == null) ? null : unserialize($value);
-    }
+    }*/
 
 }
