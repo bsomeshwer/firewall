@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class FirewallRequestsLogModel
+ *
+ * @property mixed response
  * @package Someshwer\Firewall\src\Entities
  * @author Someshwer Bandapally
  * Date: 14-08-2018
@@ -23,7 +25,7 @@ class FirewallRequestsLogModel extends Model
      * @var array
      */
     protected $fillable = ['path', 'method', 'uri', 'url', 'full_url', 'query', 'file_name',
-        'http_host', 'http_user_agent', 'ip_address', 'all_request_data'];
+        'http_host', 'http_user_agent', 'ip_address', 'all_request_data', 'response_data'];
 
     /**
      * Type casting
@@ -34,5 +36,15 @@ class FirewallRequestsLogModel extends Model
         'query' => 'json',
         'all_request_data' => 'json'
     ];
+
+    public function setResponseDataAttribute($value)
+    {
+        $this->attributes['response_data'] = ($value == null) ? null : serialize($value);
+    }
+
+    public function getResponseDataAttribute($value)
+    {
+        return ($value == null) ? null : unserialize($value);
+    }
 
 }
