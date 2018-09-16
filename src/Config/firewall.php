@@ -106,7 +106,7 @@ return [
      * Enables pagination for exception log data if set to TRUE.
      * To disable pagination set it to FALSE
      */
-    'exceptions_log_pagination' => [
+    'exception_log_pagination' => [
         'enabled' => true,
         'per_page' => 20
     ],
