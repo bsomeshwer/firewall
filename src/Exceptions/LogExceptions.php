@@ -42,10 +42,12 @@ class LogExceptions
      */
     public function logException($request, $exception)
     {
-        $exception_log = new ExceptionLog();
-        if (($exception instanceof QueryException) && ($exception->getCode() != 2002)) {
-            $exception_log = $this->prepareRequestData($exception_log, $request);
-            $this->prepareExceptionData($exception_log, $exception);
+        if (config('firewall.log_exceptions')) {
+            $exception_log = new ExceptionLog();
+            if (($exception instanceof QueryException) && ($exception->getCode() != 2002)) {
+                $exception_log = $this->prepareRequestData($exception_log, $request);
+                $this->prepareExceptionData($exception_log, $exception);
+            }
         }
     }
 
