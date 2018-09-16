@@ -3,6 +3,19 @@
 Firewall enables us to whitelist and blacklist IP addresses for LARAVEL applications. 
 This package detects an unknown ip addresses using filtering mechanism based on whitelist and blacklist arrays and configuration options.
 
+#Features of the package:
+    •	Blacklist and Whitelist IP addresses.
+    •	Enabling and disabling whitelist and blacklist.
+    •	Tracking which IP address is blacklisted and which is whitelisted.
+    •	Provides accept and reject options for range of IP addresses or IP range. This option is not implemented yet and will be introduced soon.
+    •	Tracking/logging all incoming requests into database table and enabling/disabling this option.
+    •	Tracking/logging specific requests to database and enabling/disabling this option.
+    •	Tracking and logging exceptions raised by the application and enabling/disabling this option.
+    •	Customize redirect URL. Also redirect view can be customized.
+    •	Enable/disable option for pagination of logs. Also, there is an option to set number of records per page in configuration.
+    •	Filter log data with from date and to date.
+    •	And many helper methods and commands are provided. Those helper methods are discussed in their respective sections of this documnent.
+
 #Installation
 Open terminal, go to root directory and run the following command:
 
