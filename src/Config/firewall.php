@@ -89,6 +89,26 @@ return [
     'firewall_requests_log_pagination' => [
         'enabled' => true,
         'per_page' => 20
-    ]
+    ],
+
+    /**
+     * Enables exceptions to be logged into database table called 'exception_log'
+     *
+     * To enable this feature set it to TRUE
+     * To disable this feature set it to FALSE
+     *
+     * If set to FALSE exceptions will not be tracked/logged.
+     *
+     */
+    'log_exceptions' => true,
+
+    /**
+     * Enables pagination for exception log data if set to TRUE.
+     * To disable pagination set it to FALSE
+     */
+    'exceptions_log_pagination' => [
+        'enabled' => true,
+        'per_page' => 20
+    ],
 
 ];
