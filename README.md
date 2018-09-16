@@ -163,6 +163,33 @@ This commands will display all accept and reject listed ip addresses on console.
 
 If no option is given then 'NoOptionException' will be thrown.
 
+#Firewall Log
+
+This tracks and logs every request which assigned with this middleware into firewall_log table. This firewall_log table 
+contains all request and response data that belongs all requests which assigned with the firewall middleware.
+
+    Note: This option can also be enabled/disabled. In order to enable this option goto 'firewall' config file and set 'firewall_log' 
+    option to TRUE. To disable set 'firewall_log' to FALSE. If this option is enabled then all asscociated requests will be logged 
+    into 'firewall_log' table. If disabled nothing is logged into 'firewall_log' table. 
+
+#Firewall Requests Log
+
+This tracks and logs every incoming request into the application. This firewall_requests_log table holds request and response data
+of all requests that entered into the application.
+
+    Note: This option can also be enabled/disabled. In order to enable this option goto 'firewall' config file and set 'log_request' 
+    option to TRUE. To disable set 'log_request' to FALSE. If this option is enabled then every incoming request to the application 
+    will be logged into 'firewall_requests_log' table. If disabled nothing is logged into 'firewall_requests_log' table. 
+
+#Exceptions Log
+
+This tracks and logs every exception raised by the application. This exception_log table holds request and exception data
+of all requests those raised exception.
+
+    Note: This option can also be enabled/disabled. In order to enable this option goto 'firewall' config file and set 'log_exceptions' 
+    option to TRUE. To disable set 'log_exceptions' to FALSE. If this option is enabled then every exception raised by the application 
+    can be logged into 'exception_log' table. If disabled nothing is logged into 'exception_log' table.
+
 #Ip Helpers
 
     Firewall::whitelist();
@@ -200,7 +227,7 @@ whether ip address is whitelisted, blacklisted, accepted or rejected.
 
 #Log Helpers
 
-    #Firewall::log($from_date, $to_date);
+    #Firewall::log($from_date, $to_date); Note: from_date and to_dates are optional here.
     
 This method returns all log records from firewall_log table. The results can also be paginated. The 'firewall_log_pagination.enabled' must be set to TRUE for paginating results. In order to set the number of records per page then must use 'firewall_log_pagination.per_page' config option.
 
@@ -208,7 +235,7 @@ This function also accepts date parameters. If 'from date' and 'to date' is give
 
 The date format must be 'Y-m-d'. For example: If the from date is 12-Jan-2018 then form_date must be provided as '2018-01-12'.
 
-    #Firewall::requestLog();
+    #Firewall::requestLog($from_date, $to_date); Note: from_date and to_dates are optional here.
 
 This method returns all requests log records from firewall_request_log table. These results can also be paginated. The 'firewall_request_log_pagination.enabled' option must be set to TRUE for paginating results. In order to set the number of records per page then must use 'firewall_request_log_pagination.per_page' config option.
 
@@ -224,3 +251,16 @@ Firewall log depends on the firewall system. It tracks only those requests that 
 
 Firewall request log tracks every incoming request and stores only request and response information into the database table called 'firewall_requests_log'.
 
+    #Firewall::exceptionLog($from_date, $to_date); Note: from_date and to_dates are optional here.
+
+This method returns all records from exception_log table. These results can also be paginated. The 'exception_log_pagination.enabled' option must be set to TRUE for paginating results. In order to set the number of records per page then must use 'exception_log_pagination.per_page' config option.
+
+This function also accepts date parameters. If 'from_date' and 'to_date' is given then it returns all the records between specified dates.
+
+The date format must be 'Y-m-d'. For example: If the to date is 12-Jan-2018 then to_date must be provided in the following format i.e.; '2018-01-12'.
+
+    * If wrong date format is given then all the records will be returned irrespective of dates.
+
+Note:
+    
+    **If from_date and to_date is given then records will be returned including records on from_date and to_date.
