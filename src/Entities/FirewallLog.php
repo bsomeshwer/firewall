@@ -25,8 +25,9 @@ class FirewallLog extends Model
      *
      * @var array
      */
-    protected $fillable = ['path', 'method', 'uri', 'url', 'full_url', 'query', 'file_name', 'http_host',
-        'http_user_agent', 'ip_address', 'black_listed', 'white_listed', 'accepted', 'rejected', 'all_request_data'];
+    protected $fillable = ['path', 'method', 'uri', 'url', 'full_url', 'query', 'file_name',
+        'http_host', 'http_user_agent', 'ip_address', 'black_listed', 'white_listed', 'accepted',
+        'rejected', 'all_request_data', 'response_data'];
 
     /**
      * Type casting
@@ -39,7 +40,8 @@ class FirewallLog extends Model
         'accepted' => 'boolean',
         'rejected' => 'boolean',
         'query' => 'json',
-        'all_request_data' => 'json'
+        'all_request_data' => 'json',
+        'response_data' => 'json'
     ];
 
 }

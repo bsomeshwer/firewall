@@ -33,6 +33,7 @@ class CreateFirewallLogTable extends Migration
             $table->boolean('accepted')->nullable();
             $table->boolean('rejected')->nullable();
             $table->longText('all_request_data')->nullable();
+            $table->longText('response_data')->nullable();
             $table->timestamps();
         });
     }
