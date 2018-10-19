@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Someshwer\Firewall\src\Entities\ExceptionLog;
 use Someshwer\Firewall\src\Entities\FirewallLog;
 use Someshwer\Firewall\src\Entities\FirewallRequestsLogModel;
 
@@ -83,12 +84,15 @@ class FirewallRepository
      * Get log instance based on type
      *
      * @param null $log_type
-     * @return FirewallLog|FirewallRequestsLogModel
+     * @return ExceptionLog|FirewallLog|FirewallRequestsLogModel
      */
     public function getLogInstance($log_type = null)
     {
         if ($log_type == 'request_log') {
             return $request_log = new FirewallRequestsLogModel();
+        }
+        if ($log_type == 'exception_log') {
+            return $request_log = new ExceptionLog();
         }
         return $log = new FirewallLog;
     }
@@ -123,9 +127,9 @@ class FirewallRepository
      */
     public function addWhereBetweenClause($log, $from_date, $to_date)
     {
-        $from = Carbon::createFromFormat('Y-m-d', $from_date)->format('Y-m-d');
-        $to = Carbon::createFromFormat('Y-m-d', $to_date)->format('Y-m-d');
-        return $log->whereBetween(DB::raw('DATE(`created_at`)'), [$from, $to]);
+        // $from = Carbon::createFromFormat('Y-m-d', $from_date)->format('Y-m-d');
+        // $to = Carbon::createFromFormat('Y-m-d', $to_date)->format('Y-m-d');
+        return $log->whereDate('created_at', '>=', $from_date)->whereDate('created_at', '<=', $to_date);
     }
 
     /**
@@ -140,6 +144,9 @@ class FirewallRepository
         if ($log_type == 'request_log') {
             $is_pagination = config('firewall.firewall_requests_log_pagination.enabled');
             $records_per_page = config('firewall.firewall_requests_log_pagination.per_page');
+        } elseif ($log_type == 'exception_log') {
+            $is_pagination = config('firewall.exception_log_pagination.enabled');
+            $records_per_page = config('firewall.exception_log_pagination.per_page');
         } else {
             $is_pagination = config('firewall.firewall_log_pagination.enabled');
             $records_per_page = config('firewall.firewall_log_pagination.per_page');

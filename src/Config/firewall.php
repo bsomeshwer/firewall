@@ -89,6 +89,38 @@ return [
     'firewall_requests_log_pagination' => [
         'enabled' => true,
         'per_page' => 20
+    ],
+
+    /**
+     * Enables exceptions to be logged into database table called 'exception_log'
+     *
+     * To enable this feature set it to TRUE
+     * To disable this feature set it to FALSE
+     *
+     * If set to FALSE exceptions will not be tracked/logged.
+     *
+     */
+    'log_exceptions' => true,
+
+    /**
+     * Enables pagination for exception log data if set to TRUE.
+     * To disable pagination set it to FALSE
+     */
+    'exception_log_pagination' => [
+        'enabled' => true,
+        'per_page' => 20
+    ],
+
+    /**
+     * It notifies exceptions via email. An email with exception details will be sent to the
+     * configured email id when ever an exception occurred in the application.
+     * To enable this feature set this option to TRUE otherwise set to FALSE.
+     */
+    'notify_exceptions' => [
+        'via_email' => true,
+        'mail_from' => env('EXCEPTION_NOTIFICATION_EMAIL_FROM', 'example@email.com'),
+        'mail_to' => env('EXCEPTION_NOTIFICATION_EMAIL_TO', 'example@email.com'),
+        'subject' => 'Whoops! An exception occurred in the Application! - (' . env('APP_NAME', 'LARAVEL') . ')'
     ]
 
 ];

@@ -204,5 +204,23 @@ class Firewall
         return $log;
     }
 
+    /**
+     * Returns exceptions log data along with pagination if pagination is enabled in configuration.
+     *
+     * @param null $from_date
+     * @param null $to_date
+     * @return mixed|\Someshwer\Firewall\src\Entities\ExceptionLog|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
+     */
+    public function exceptionLog($from_date = null, $to_date = null)
+    {
+        $log = $this->repo->getLogInstance('exception_log');
+        if ((($from_date != null) || ($to_date != null))) {
+            if (!$this->repo->validateDates($from_date, $to_date)) {
+                $log = $this->repo->addWhereBetweenClause($log, $from_date, $to_date);
+            }
+        }
+        $log = $this->repo->addPagination($log, 'exception_log');
+        return $log;
+    }
 
 }

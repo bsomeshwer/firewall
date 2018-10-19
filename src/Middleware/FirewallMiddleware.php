@@ -1,6 +1,7 @@
 <?php namespace Someshwer\Firewall\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Log;
 use Someshwer\Firewall\Lib\IPFilter;
 use Someshwer\Firewall\src\Entities\FirewallLog;
 
@@ -276,8 +277,51 @@ class FirewallMiddleware
                 return $redirect_response;
             }
         }
+        $response = $next($request);
+        // Logging response data
+        $response_data = $this->prepareResponseData($response);
+        $this->logResponseData($response_data, $log_request);
         // Proceeding further with the actual request
-        return $next($request);
+        return $response;
+    }
+
+    /**
+     * Preparing response data to be stored
+     *
+     * @param $response
+     * @return array
+     */
+    private function prepareResponseData($response)
+    {
+        try {
+            $response_data = [
+                'status_code' => $response->getStatusCode(),
+                'headers' => [
+                    'cache_control' => $response->headers->get('cache-control'),
+                    'content_type' => $response->headers->get('content-type'),
+                    'date' => $response->headers->get('date')
+                ],
+                // 'original_data'=>$response->getOriginalContent(),
+            ];
+        } catch (\Exception $e) {
+            Log::error($e);
+            $response_data = null;
+        }
+        return $response_data;
+    }
+
+    /**
+     * This logs and stores the response data to firewall_requests_log table.
+     *
+     * @param $response
+     * @param $firewall_log
+     * @return mixed
+     */
+    private function logResponseData($response, $firewall_log)
+    {
+        $firewall_log->response_data = $response;
+        $firewall_log->save();
+        return $firewall_log;
     }
 
 }

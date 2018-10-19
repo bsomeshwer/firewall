@@ -4,7 +4,6 @@ use Illuminate\Support\ServiceProvider;
 use Someshwer\Firewall\Commands\BlackListCommand;
 use Someshwer\Firewall\Commands\WhitelistCommand;
 use Someshwer\Firewall\Lib\Firewall;
-use Someshwer\Firewall\Middleware\FirewallMiddleware;
 use Someshwer\Firewall\src\Commands\AcceptAndRejectListCommand;
 use Someshwer\Firewall\src\Repo\FirewallRepository;
 

@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateFirewallRequestsLogTable
+ * Class CreateExceptionLogTable
  */
-class CreateFirewallRequestsLogTable extends Migration
+class CreateExceptionLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateFirewallRequestsLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('firewall_requests_log', function (Blueprint $table) {
+        Schema::create('exception_log', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path', 25);
             $table->string('method', 25);
@@ -29,7 +29,7 @@ class CreateFirewallRequestsLogTable extends Migration
             $table->string('http_user_agent', 250);
             $table->string('ip_address', 25);
             $table->longText('all_request_data')->nullable();
-            $table->longText('response_data')->nullable();
+            $table->longText('exception_data')->nullable();
             $table->timestamps();
         });
     }
@@ -41,6 +41,6 @@ class CreateFirewallRequestsLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('firewall_requests_log');
+        Schema::dropIfExists('exception_log');
     }
 }

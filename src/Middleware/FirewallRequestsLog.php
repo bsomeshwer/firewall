@@ -3,6 +3,7 @@
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Someshwer\Firewall\src\Entities\FirewallRequestsLogModel;
 
 /**
@@ -44,7 +45,8 @@ class FirewallRequestsLog
             $firewall_requests_log = $this->prepareAndSaveLogData($request, $firewall_requests_log);
         }
         $response = $next($request);
-        $this->logResponseData($response, $firewall_requests_log);
+        $response_data = $this->prepareResponseData($response);
+        $this->logResponseData($response_data, $firewall_requests_log);
         return $response;
     }
 
@@ -75,9 +77,29 @@ class FirewallRequestsLog
         return $firewall_requests_log;
     }
 
-    private function prepareResponseData()
+    /**
+     * Preparing response data to be stored
+     *
+     * @param $response
+     * @return array
+     */
+    private function prepareResponseData($response)
     {
-
+        try {
+            $response_data = [
+                'status_code' => $response->getStatusCode(),
+                'headers' => [
+                    'cache_control' => $response->headers->get('cache-control'),
+                    'content_type' => $response->headers->get('content-type'),
+                    'date' => $response->headers->get('date')
+                ],
+                // 'original_data'=>$response->getOriginalContent(),
+            ];
+        } catch (\Exception $e) {
+            Log::error($e);
+            $response_data = null;
+        }
+        return $response_data;
     }
 
     /**
@@ -89,7 +111,7 @@ class FirewallRequestsLog
      */
     private function logResponseData($response, $firewall_requests_log)
     {
-        $firewall_requests_log->response_data = ($response instanceof JsonResponse) ? $response : null;
+        $firewall_requests_log->response_data = $response;
         $firewall_requests_log->save();
         return $firewall_requests_log;
     }
