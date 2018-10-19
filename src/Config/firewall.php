@@ -111,4 +111,16 @@ return [
         'per_page' => 20
     ],
 
+    /**
+     * It notifies exceptions via email. An email with exception details will be sent to the
+     * configured email id when ever an exception occurred in the application.
+     * To enable this feature set this option to TRUE otherwise set to FALSE.
+     */
+    'notify_exceptions' => [
+        'via_email' => true,
+        'mail_from' => env('EXCEPTION_NOTIFICATION_EMAIL_FROM', 'example@email.com'),
+        'mail_to' => env('EXCEPTION_NOTIFICATION_EMAIL_TO', 'example@email.com'),
+        'subject' => 'Whoops! An exception occurred in the Application! - (' . env('APP_NAME', 'LARAVEL') . ')'
+    ]
+
 ];

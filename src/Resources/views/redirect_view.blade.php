@@ -75,7 +75,7 @@
         <div style="margin: 0 auto;text-align: center;margin-top: 5px;">
         </div>
         <div class="sub">
-            <p><a href="{{url('')}}">Back</a></p>
+            <p><a href="{{url('#')}}">Back</a></p>
         </div>
     </div>
 </div>
@@ -83,7 +83,7 @@
 </div>
 <div class="footer">
     © 2018 error 401 . All Rights Reserved.
-    {{--| Design by<a href="#">W3layouts</a>--}}
+    | Design by <a href="#">#</a>
 </div>
 </body>
 </html>
