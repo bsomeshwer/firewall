@@ -1,12 +1,13 @@
-<?php namespace Someshwer\Firewall\Commands;
+<?php
+
+namespace Someshwer\Firewall\Commands;
 
 use Illuminate\Console\Command;
 
 /**
- * This class displays all the white listed ip addresses on console
+ * This class displays all the white listed ip addresses on console.
  *
  * Class WhitelistCommand
- * @package Someshwer\Firewall\Commands
  */
 class WhitelistCommand extends Command
 {
@@ -50,9 +51,10 @@ class WhitelistCommand extends Command
     }
 
     /**
-     * Decorate values as table with headers
+     * Decorate values as table with headers.
      *
      * @param array $white_list
+     *
      * @return array $ip_list
      */
     private function formTableHeaders($white_list)
@@ -61,12 +63,12 @@ class WhitelistCommand extends Command
         $i = 1;
         foreach ($white_list as $item) {
             $ip_list[] = [
-                'sno' => $i,
+                'sno'        => $i,
                 'ip_address' => $item,
-                'blacklist' => 'true',
+                'blacklist'  => 'true',
             ];
         }
+
         return $ip_list;
     }
-
 }
