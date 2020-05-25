@@ -4,7 +4,7 @@ php:
     - 7.3
 #   - hhvm # on Trusty only
 #   - nightly
-    - hhvm-3.30
+    - hhvm
 #   - hhvm-nightly
 
 # phpunit:
