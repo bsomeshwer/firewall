@@ -3,9 +3,10 @@
 [![Package version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg)](https://packagist.org/packages/bsomeshwer/firewall)
 [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE)
 [![Code Quality](https://img.shields.io/scrutinizer/g/bsomeshwer/firewall.svg?style=flat-square)](https://scrutinizer-ci.com/g/bsomeshwer/firewall/?branch=master)
-[![Code Quality](https://www.code-inspector.com/project/8535/score/svg)]
-[![Code Grade](https://www.code-inspector.com/project/8535/status/svg)]
+![Code Quality](https://www.code-inspector.com/project/8535/score/svg)
+![Code Grade](https://www.code-inspector.com/project/8535/status/svg)
 [![Build Status](https://travis-ci.com/bsomeshwer/firewall.svg?branch=master)](https://travis-ci.com/bsomeshwer/firewall)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/bsomeshwer/firewall/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Coverage Status](https://coveralls.io/repos/github/bsomeshwer/firewall/badge.svg?branch=master)](https://coveralls.io/github/bsomeshwer/firewall?branch=master)
 [![Total Downloads](https://poser.pugx.org/someshwer/firewall/downloads.svg)](https://packagist.org/packages/someshwer/firewall)
 [![codecov](https://codecov.io/gh/bsomeshwer/firewall/branch/master/graph/badge.svg)](https://codecov.io/gh/bsomeshwer/firewall)
