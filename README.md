@@ -15,12 +15,11 @@
 [![Latest Stable Version](https://poser.pugx.org/someshwer/firewall/v/stable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Latest Unstable Version](https://poser.pugx.org/someshwer/firewall/v/unstable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Total Downloads](https://poser.pugx.org/someshwer/firewall/downloads.svg)](https://packagist.org/packages/someshwer/firewall)
-
-[![Version](https://poser.pugx.org/someshwer/firewall/version)](//packagist.org/packages/someshwer/firewall)
-[![.gitattributes](https://poser.pugx.org/someshwer/firewall/gitattributes)](//packagist.org/packages/someshwer/firewall)
-[![Suggesters](https://poser.pugx.org/someshwer/firewall/suggesters)](//packagist.org/packages/someshwer/firewall)
 [![Daily Downloads](https://poser.pugx.org/someshwer/firewall/d/daily)](//packagist.org/packages/someshwer/firewall)
+
+[![.gitattributes](https://poser.pugx.org/someshwer/firewall/gitattributes)](//packagist.org/packages/someshwer/firewall)
 [![composer.lock](https://poser.pugx.org/someshwer/firewall/composerlock)](//packagist.org/packages/someshwer/firewall)
+[![Suggesters](https://poser.pugx.org/someshwer/firewall/suggesters)](//packagist.org/packages/someshwer/firewall)
 [![Dependents](https://poser.pugx.org/someshwer/firewall/dependents)](//packagist.org/packages/someshwer/firewall)
 
 
