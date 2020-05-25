@@ -1,5 +1,9 @@
 # Firewall
 
+[![Total Downloads](https://poser.pugx.org/someshwer/firewall/downloads.svg)](https://packagist.org/packages/someshwer/firewall)
+[![Latest Stable Version](https://poser.pugx.org/someshwer/firewall/v/stable.svg)](https://packagist.org/packages/someshwer/firewall)
+[![Latest Unstable Version](https://poser.pugx.org/someshwer/firewall/v/unstable.svg)](https://packagist.org/packages/someshwer/firewall)
+
 Firewall enables us to whitelist and blacklist IP addresses for LARAVEL applications. 
 This package detects an unknown ip addresses using filtering mechanism based on whitelist and blacklist arrays and configuration options.
 

@@ -52,7 +52,7 @@
         <span style="font-weight: bold; font-style: italic; text-decoration: underline">
             Exception trace information:</span>
         <br><br>
-        <span style="margin-top: 5px">{{$data}}</span>
+        <span style="margin-top: 5px">{{$exception}}</span>
     </p>
 </div>
 </body>

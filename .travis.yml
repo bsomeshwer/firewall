@@ -1,0 +1,21 @@
+language: php
+
+php:
+    - 7.3
+#   - hhvm
+#   - nightly
+
+# phpunit:
+#   - 5.2
+
+before_script:
+#    - curl -sSfL -o ~/.phpenv/versions/hhvm/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar
+    - travis_retry composer self-update
+    - travis_retry composer install --no-interaction --prefer-source --dev
+
+script:
+   - vendor/bin/phpunit --coverage-clover=coverage.xml
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
+    - travis_retry php vendor/bin/php-coveralls

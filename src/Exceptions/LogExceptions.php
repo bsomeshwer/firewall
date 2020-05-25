@@ -1,8 +1,8 @@
 <?php namespace Someshwer\Firewall\src\Exceptions;
 
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Mail;
 use Someshwer\Firewall\src\Entities\ExceptionLog;
+use Someshwer\Firewall\src\Events\NotifyException;
 
 /**
  * Class LogExceptions
@@ -50,7 +50,8 @@ class LogExceptions
                 $exception_log = $this->prepareRequestData($exception_log, $request);
                 $this->prepareExceptionData($exception_log, $exception);
             }
-            $this->notifyExceptionViaEmail($exception);
+            // Stop sending exception email from here
+            // $this->notifyExceptionViaEmail($exception);
         }
     }
 
@@ -116,14 +117,9 @@ class LogExceptions
     {
         if (config('firewall.notify_exceptions.via_email')) {
             $data = $exception->getTraceAsString();
-            Mail::send('package_redirect::exception_notification_view',
-                ['data' => $data], function ($message) {
-                    $from = config('firewall.notify_exceptions.mail_from');
-                    $to = config('firewall.notify_exceptions.mail_to');
-                    $subject = config('firewall.notify_exceptions.subject');
-                    $message->from($from, $subject);
-                    $message->to($to);
-                });
+
+            // Firing event to send exception notification
+             event(new NotifyException($data));
         }
     }
 
