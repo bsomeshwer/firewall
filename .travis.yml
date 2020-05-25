@@ -1,8 +1,6 @@
 language: php
 
 php:
-    - 7.1
-    - 7.2
     - 7.3
 #   - hhvm # on Trusty only
 #   - nightly
@@ -13,10 +11,9 @@ php:
 #   - 5.2
 
 before_script:
+    - curl -sSfL -o ~/.phpenv/versions/hhvm/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source --dev
-
-#   - curl -sSfL -o ~/.phpenv/versions/hhvm/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar
 
 script:
    - vendor/bin/phpunit --coverage-clover=coverage.xml
