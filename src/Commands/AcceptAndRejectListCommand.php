@@ -1,4 +1,6 @@
-<?php namespace Someshwer\Firewall\src\Commands;
+<?php
+
+namespace Someshwer\Firewall\src\Commands;
 
 use Illuminate\Console\Command;
 
@@ -12,7 +14,6 @@ use Illuminate\Console\Command;
  */
 class AcceptAndRejectListCommand extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -74,6 +75,7 @@ class AcceptAndRejectListCommand extends Command
      *
      * @param array $list
      * @param $option
+     *
      * @return array $ip_list
      */
     private function formTableHeaders($list, $option)
@@ -83,12 +85,12 @@ class AcceptAndRejectListCommand extends Command
         $i = 1;
         foreach ($list as $item) {
             $ip_list[] = [
-                'sno' => $i,
+                'sno'        => $i,
                 'ip_address' => $item,
-                $option_key => 'true',
+                $option_key  => 'true',
             ];
         }
+
         return $ip_list;
     }
-
 }

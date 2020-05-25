@@ -1,4 +1,6 @@
-<?php namespace Someshwer\Firewall\Middleware;
+<?php
+
+namespace Someshwer\Firewall\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Log;
@@ -35,21 +37,21 @@ class FirewallMiddleware
     protected $accept;
 
     /**
-     * IPFilter class object
+     * IPFilter class object.
      *
      * @var object
      */
     private $ip_filter;
 
     /**
-     * Redirect url for black and white list
+     * Redirect url for black and white list.
      *
      * @var string
      */
     private $redirect_url;
 
     /**
-     * Determines request to be logged or not
+     * Determines request to be logged or not.
      *
      * @var \Illuminate\Config\Repository|mixed
      */
@@ -57,6 +59,7 @@ class FirewallMiddleware
 
     /**
      * FirewallMiddleware constructor.
+     *
      * @param IPFilter $ipFilter
      */
     public function __construct(IPFilter $ipFilter)
@@ -70,35 +73,38 @@ class FirewallMiddleware
 
     /**
      * This method assigns and stores the request
-     * data into a firewall_log table
+     * data into a firewall_log table.
      *
      * @param $request
+     *
      * @return FirewallLog
      */
     private function logRequest($request)
     {
-        $firewall_log = new FirewallLog;
+        $firewall_log = new FirewallLog();
         $firewall_log->fill([
-            'path' => $request->path(),
-            'url' => $request->url(),
-            'full_url' => $request->fullUrl(),
-            'method' => $_SERVER['REQUEST_METHOD'],
-            'uri' => $_SERVER['REQUEST_URI'],
-            'query' => $request->query() ? $request->query() : null,
-            'file_name' => $_SERVER['SCRIPT_FILENAME'],
-            'http_host' => $_SERVER['HTTP_HOST'],
-            'http_user_agent' => $_SERVER['HTTP_USER_AGENT'],
-            'ip_address' => $request->ip(),
-            'all_request_data' => $_SERVER
+            'path'             => $request->path(),
+            'url'              => $request->url(),
+            'full_url'         => $request->fullUrl(),
+            'method'           => $_SERVER['REQUEST_METHOD'],
+            'uri'              => $_SERVER['REQUEST_URI'],
+            'query'            => $request->query() ? $request->query() : null,
+            'file_name'        => $_SERVER['SCRIPT_FILENAME'],
+            'http_host'        => $_SERVER['HTTP_HOST'],
+            'http_user_agent'  => $_SERVER['HTTP_USER_AGENT'],
+            'ip_address'       => $request->ip(),
+            'all_request_data' => $_SERVER,
         ]);
         $firewall_log->save();
+
         return $firewall_log;
     }
 
     /**
-     * Checking accept list whether it has current request ip or not
+     * Checking accept list whether it has current request ip or not.
      *
      * @param object $request
+     *
      * @return bool
      */
     private function checkAcceptList($request)
@@ -109,13 +115,15 @@ class FirewallMiddleware
                 $status = true;
             }
         }
+
         return $status;
     }
 
     /**
-     * Checking reject list whether it has current request ip or not
+     * Checking reject list whether it has current request ip or not.
      *
      * @param object $request
+     *
      * @return bool
      */
     private function checkRejectList($request)
@@ -126,11 +134,12 @@ class FirewallMiddleware
                 $status = true;
             }
         }
+
         return $status;
     }
 
     /**
-     * Set default values to black_listed and accepted attributes
+     * Set default values to black_listed and accepted attributes.
      *
      * @param $log_request
      */
@@ -144,7 +153,7 @@ class FirewallMiddleware
     }
 
     /**
-     * Set black_listed and accepted attributes and store in a table
+     * Set black_listed and accepted attributes and store in a table.
      *
      * @param $request
      * @param $log_request
@@ -170,6 +179,7 @@ class FirewallMiddleware
      * This methods redirects to a specified url if the ip address is really blocked.
      *
      * @param $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|null
      */
     private function redirectIfBlocked($request)
@@ -182,11 +192,12 @@ class FirewallMiddleware
                 return redirect($this->redirect_url);
             }
         }
+
         return null;
     }
 
     /**
-     * Set values to white_listed and rejected attributes
+     * Set values to white_listed and rejected attributes.
      *
      * @param $request
      * @param $log_request
@@ -203,10 +214,11 @@ class FirewallMiddleware
     }
 
     /**
-     * Redirecting to specified url if the ip in rejected list
+     * Redirecting to specified url if the ip in rejected list.
      *
      * @param $request
      * @param $log_request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|null
      */
     private function redirectIfRejectListed($request, $log_request)
@@ -220,14 +232,16 @@ class FirewallMiddleware
             // If present redirect the request custom redirection url
             return redirect($this->redirect_url);
         }
+
         return null;
     }
 
     /**
-     * Redirects to a specified url if given ip is not white listed
+     * Redirects to a specified url if given ip is not white listed.
      *
      * @param $request
      * @param $log_request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|null
      */
     private function redirectIfNotWhiteListed($request, $log_request)
@@ -241,14 +255,16 @@ class FirewallMiddleware
             // If not present redirect the request custom redirection url
             return redirect($this->redirect_url);
         }
+
         return null;
     }
 
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -286,9 +302,10 @@ class FirewallMiddleware
     }
 
     /**
-     * Preparing response data to be stored
+     * Preparing response data to be stored.
      *
      * @param $response
+     *
      * @return array
      */
     private function prepareResponseData($response)
@@ -296,10 +313,10 @@ class FirewallMiddleware
         try {
             $response_data = [
                 'status_code' => $response->getStatusCode(),
-                'headers' => [
+                'headers'     => [
                     'cache_control' => $response->headers->get('cache-control'),
-                    'content_type' => $response->headers->get('content-type'),
-                    'date' => $response->headers->get('date')
+                    'content_type'  => $response->headers->get('content-type'),
+                    'date'          => $response->headers->get('date'),
                 ],
                 // 'original_data'=>$response->getOriginalContent(),
             ];
@@ -307,6 +324,7 @@ class FirewallMiddleware
             Log::error($e);
             $response_data = null;
         }
+
         return $response_data;
     }
 
@@ -315,13 +333,14 @@ class FirewallMiddleware
      *
      * @param $response
      * @param $firewall_log
+     *
      * @return mixed
      */
     private function logResponseData($response, $firewall_log)
     {
         $firewall_log->response_data = $response;
         $firewall_log->save();
+
         return $firewall_log;
     }
-
 }

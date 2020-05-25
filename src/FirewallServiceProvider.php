@@ -1,4 +1,6 @@
-<?php namespace Someshwer\Firewall;
+<?php
+
+namespace Someshwer\Firewall;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -11,12 +13,10 @@ use Someshwer\Firewall\src\Listeners\HandleNotifyException;
 use Someshwer\Firewall\src\Repo\FirewallRepository;
 
 /**
- * Class FirewallServiceProvider
- * @package Someshwer\Firewall
+ * Class FirewallServiceProvider.
  */
 class FirewallServiceProvider extends ServiceProvider
 {
-
     /**
      * Register any application services.
      *
@@ -39,16 +39,16 @@ class FirewallServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/config/firewall.php' => config_path('firewall_old.php')]);
-        $this->loadRoutesFrom(__DIR__ . '\routes\routes.php');
+        $this->publishes([__DIR__.'/config/firewall.php' => config_path('firewall_old.php')]);
+        $this->loadRoutesFrom(__DIR__.'\routes\routes.php');
         // $this->app['router']->aliasMiddleware('firewall', FirewallMiddleware::class);
         $this->commands([
             BlackListCommand::class,
             WhitelistCommand::class,
-            AcceptAndRejectListCommand::class
+            AcceptAndRejectListCommand::class,
         ]);
-        $this->loadViewsFrom(__DIR__ . '/Resources/views', 'package_redirect');
-        $this->publishes([__DIR__ . '/Migrations' => $this->app->databasePath() . '/migrations'], 'migrations');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'package_redirect');
+        $this->publishes([__DIR__.'/Migrations' => $this->app->databasePath().'/migrations'], 'migrations');
     }
 
     /**
@@ -58,5 +58,4 @@ class FirewallServiceProvider extends ServiceProvider
     {
         Event::listen(NotifyException::class, HandleNotifyException::class);
     }
-
 }
