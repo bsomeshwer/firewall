@@ -1,14 +1,14 @@
-<?php namespace Someshwer\Firewall\Middleware;
+<?php
+
+namespace Someshwer\Firewall\Middleware;
 
 use Closure;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Someshwer\Firewall\src\Entities\FirewallRequestsLogModel;
 
 /**
- * Class FirewallRequestsLog
- * @package Someshwer\Firewall\Middleware
+ * Class FirewallRequestsLog.
  *
  * @author Someshwer Bandapally
  * Date: 14-08-2018
@@ -17,7 +17,6 @@ use Someshwer\Firewall\src\Entities\FirewallRequestsLogModel;
  */
 class FirewallRequestsLog
 {
-
     /**
      * @var \Illuminate\Config\Repository|mixed
      */
@@ -34,8 +33,9 @@ class FirewallRequestsLog
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -47,12 +47,14 @@ class FirewallRequestsLog
         $response = $next($request);
         $response_data = $this->prepareResponseData($response);
         $this->logResponseData($response_data, $firewall_requests_log);
+
         return $response;
     }
 
     /**
      * @param $request
      * @param $firewall_requests_log
+     *
      * @return FirewallRequestsLogModel
      *
      * Prepares request data to be stored in a table.
@@ -61,26 +63,28 @@ class FirewallRequestsLog
     private function prepareAndSaveLogData($request, $firewall_requests_log)
     {
         $firewall_requests_log->fill([
-            'path' => $request->path(),
-            'url' => $request->url(),
-            'full_url' => $request->fullUrl(),
-            'method' => $_SERVER['REQUEST_METHOD'],
-            'uri' => $_SERVER['REQUEST_URI'],
-            'query' => $request->query() ? $request->query() : null,
-            'file_name' => $_SERVER['SCRIPT_FILENAME'],
-            'http_host' => $_SERVER['HTTP_HOST'],
-            'http_user_agent' => $_SERVER['HTTP_USER_AGENT'],
-            'ip_address' => $request->ip(),
-            'all_request_data' => $_SERVER
+            'path'             => $request->path(),
+            'url'              => $request->url(),
+            'full_url'         => $request->fullUrl(),
+            'method'           => $_SERVER['REQUEST_METHOD'],
+            'uri'              => $_SERVER['REQUEST_URI'],
+            'query'            => $request->query() ? $request->query() : null,
+            'file_name'        => $_SERVER['SCRIPT_FILENAME'],
+            'http_host'        => $_SERVER['HTTP_HOST'],
+            'http_user_agent'  => $_SERVER['HTTP_USER_AGENT'],
+            'ip_address'       => $request->ip(),
+            'all_request_data' => $_SERVER,
         ]);
         $firewall_requests_log->save();
+
         return $firewall_requests_log;
     }
 
     /**
-     * Preparing response data to be stored
+     * Preparing response data to be stored.
      *
      * @param $response
+     *
      * @return array
      */
     private function prepareResponseData($response)
@@ -88,10 +92,10 @@ class FirewallRequestsLog
         try {
             $response_data = [
                 'status_code' => $response->getStatusCode(),
-                'headers' => [
+                'headers'     => [
                     'cache_control' => $response->headers->get('cache-control'),
-                    'content_type' => $response->headers->get('content-type'),
-                    'date' => $response->headers->get('date')
+                    'content_type'  => $response->headers->get('content-type'),
+                    'date'          => $response->headers->get('date'),
                 ],
                 // 'original_data'=>$response->getOriginalContent(),
             ];
@@ -99,6 +103,7 @@ class FirewallRequestsLog
             Log::error($e);
             $response_data = null;
         }
+
         return $response_data;
     }
 
@@ -107,13 +112,14 @@ class FirewallRequestsLog
      *
      * @param $response
      * @param $firewall_requests_log
+     *
      * @return mixed
      */
     private function logResponseData($response, $firewall_requests_log)
     {
         $firewall_requests_log->response_data = $response;
         $firewall_requests_log->save();
+
         return $firewall_requests_log;
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Configuration file of firewall package
+ * Configuration file of firewall package.
  *
  * @author Someshwer<bsomeshwer89@gmail.com>
  * Date: 13-10-2018
@@ -75,40 +75,39 @@ return [
 
     /**
      * Enables firewall log pagination if set to TRUE.
-     * To disable pagination set it to FALSE
+     * To disable pagination set it to FALSE.
      */
     'firewall_log_pagination' => [
-        'enabled' => true,
-        'per_page' => 20
+        'enabled'  => true,
+        'per_page' => 20,
     ],
 
     /**
      * Enables firewall requests log pagination if set to TRUE.
-     * To disable pagination set it to FALSE
+     * To disable pagination set it to FALSE.
      */
     'firewall_requests_log_pagination' => [
-        'enabled' => true,
-        'per_page' => 20
+        'enabled'  => true,
+        'per_page' => 20,
     ],
 
     /**
-     * Enables exceptions to be logged into database table called 'exception_log'
+     * Enables exceptions to be logged into database table called 'exception_log'.
      *
      * To enable this feature set it to TRUE
      * To disable this feature set it to FALSE
      *
      * If set to FALSE exceptions will not be tracked/logged.
-     *
      */
     'log_exceptions' => true,
 
     /**
      * Enables pagination for exception log data if set to TRUE.
-     * To disable pagination set it to FALSE
+     * To disable pagination set it to FALSE.
      */
     'exception_log_pagination' => [
-        'enabled' => true,
-        'per_page' => 20
+        'enabled'  => true,
+        'per_page' => 20,
     ],
 
     /**
@@ -119,8 +118,8 @@ return [
     'notify_exceptions' => [
         'via_email' => true,
         'mail_from' => env('EXCEPTION_NOTIFICATION_EMAIL_FROM', 'example@email.com'),
-        'mail_to' => env('EXCEPTION_NOTIFICATION_EMAIL_TO', 'example@email.com'),
-        'subject' => 'Whoops! An exception occurred in the Application! - (' . env('APP_NAME', 'LARAVEL') . ')'
-    ]
+        'mail_to'   => env('EXCEPTION_NOTIFICATION_EMAIL_TO', 'example@email.com'),
+        'subject'   => 'Whoops! An exception occurred in the Application! - ('.env('APP_NAME', 'LARAVEL').')',
+    ],
 
 ];

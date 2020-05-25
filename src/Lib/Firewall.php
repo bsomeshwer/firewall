@@ -1,16 +1,17 @@
-<?php namespace Someshwer\Firewall\Lib;
+<?php
+
+namespace Someshwer\Firewall\Lib;
 
 use Someshwer\Firewall\src\Repo\FirewallRepository;
 
 /**
- * Class Firewall
- * @package Someshwer\Firewall\Lib
+ * Class Firewall.
+ *
  * @author Someshwer
  * Date: 15-08-2018
  */
 class Firewall
 {
-
     /**
      * @var \Illuminate\Config\Repository|mixed
      */
@@ -38,6 +39,7 @@ class Firewall
 
     /**
      * Firewall constructor.
+     *
      * @param FirewallRepository $firewallRepository
      */
     public function __construct(FirewallRepository $firewallRepository)
@@ -51,13 +53,14 @@ class Firewall
 
     /**
      * This package provides some useful information about the package.
+     *
      * @return array
      */
     public function info()
     {
         return [
             'package_name' => 'Laravel - Firewall',
-            'description' => 'Laravel Firewall package detects unknown ip addresses based on 
+            'description'  => 'Laravel Firewall package detects unknown ip addresses based on 
             blacklist and whitelist ip addresses. Whitelist and Blacklist are two configuration options 
             any one of them you can set to TRUE based on your requirement. For example if you set blacklist
             to TRUE and have added some ip addresses to blacklist then in that case any request to the 
@@ -67,30 +70,33 @@ class Firewall
             to TRUE then in that case the preference will be given to blacklist',
             'latest_release' => '2.2.1',
             'stable_version' => '2.2.1',
-            'author' => 'Someshwer Bandapally<bsomeshwer89@gmail.com>'
+            'author'         => 'Someshwer Bandapally<bsomeshwer89@gmail.com>',
         ];
     }
 
     /**
-     * Returns all whitelisted ip addresses
+     * Returns all whitelisted ip addresses.
+     *
      * @return array
      */
     public function whitelist()
     {
-        return array('whitelisted_ips' => $this->whitelist);
+        return ['whitelisted_ips' => $this->whitelist];
     }
 
     /**
-     * Returns all black listed ip addresses
+     * Returns all black listed ip addresses.
+     *
      * @return array
      */
     public function blacklist()
     {
-        return array('blacklisted_ips' => $this->blacklist);
+        return ['blacklisted_ips' => $this->blacklist];
     }
 
     /**
-     * Returns both combination of white and black listed ip addresses
+     * Returns both combination of white and black listed ip addresses.
+     *
      * @return array
      */
     public function whiteAndBlackList()
@@ -99,19 +105,21 @@ class Firewall
         $whitelist = array_diff($this->whitelist, $common_list);
         $blacklist = array_diff($this->blacklist, $common_list);
         $list_groups = [
-            'white' => $whitelist,
-            'black' => $blacklist,
-            'common' => $common_list
+            'white'  => $whitelist,
+            'black'  => $blacklist,
+            'common' => $common_list,
         ];
         $result_list = [];
         foreach ($list_groups as $list_type => $list_group) {
             $result_list[] = $this->repo->getList($list_group, 2, $list_type);
         }
+
         return array_collapse($result_list);
     }
 
     /**
-     * Returns accept listed ip addresses
+     * Returns accept listed ip addresses.
+     *
      * @return array
      */
     public function acceptList()
@@ -120,7 +128,8 @@ class Firewall
     }
 
     /**
-     * Returns reject listed ip addresses
+     * Returns reject listed ip addresses.
+     *
      * @return array
      */
     public function rejectList()
@@ -129,7 +138,8 @@ class Firewall
     }
 
     /**
-     * Returns both combination of accept and reject listed ip addresses
+     * Returns both combination of accept and reject listed ip addresses.
+     *
      * @return array
      */
     public function acceptAndRejectList()
@@ -140,12 +150,13 @@ class Firewall
         $list_groups = [
             'accept' => $accept_list,
             'reject' => $reject_list,
-            'common' => $common_list
+            'common' => $common_list,
         ];
         $result_list = [];
         foreach ($list_groups as $list_type => $list_group) {
             $result_list[] = $this->repo->getList($list_group, 2, $list_type);
         }
+
         return array_collapse($result_list);
     }
 
@@ -163,6 +174,7 @@ class Firewall
             $ip_list_with_statuses[] = $this->repo->getIpStatus($ip_address);
             $index++;
         }
+
         return $ip_list_with_statuses;
     }
 
@@ -171,6 +183,7 @@ class Firewall
      *
      * @param null $from_date
      * @param null $to_date
+     *
      * @return mixed|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
      */
     public function log($from_date = null, $to_date = null)
@@ -182,6 +195,7 @@ class Firewall
             }
         }
         $log = $this->repo->addPagination($log);
+
         return $log;
     }
 
@@ -190,6 +204,7 @@ class Firewall
      *
      * @param null $from_date
      * @param null $to_date
+     *
      * @return mixed|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
      */
     public function requestLog($from_date = null, $to_date = null)
@@ -201,6 +216,7 @@ class Firewall
             }
         }
         $log = $this->repo->addPagination($log, 'request_log');
+
         return $log;
     }
 
@@ -209,6 +225,7 @@ class Firewall
      *
      * @param null $from_date
      * @param null $to_date
+     *
      * @return mixed|\Someshwer\Firewall\src\Entities\ExceptionLog|\Someshwer\Firewall\src\Entities\FirewallLog|\Someshwer\Firewall\src\Entities\FirewallRequestsLogModel
      */
     public function exceptionLog($from_date = null, $to_date = null)
@@ -220,7 +237,7 @@ class Firewall
             }
         }
         $log = $this->repo->addPagination($log, 'exception_log');
+
         return $log;
     }
-
 }
