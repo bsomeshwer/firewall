@@ -1,21 +1,19 @@
 # Firewall
 
-[![Package version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg)](https://packagist.org/packages/bsomeshwer/firewall)
-https://img.shields.io/packagist/v/bsomeshwer/firwall.svg?style=flat
-[![Latest Stable Version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg?style=flat-square)](https://packagist.org/packages/bsomeshwer/firewall)
+<!-- [![Latest Stable Version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg?style=flat-square)](https://packagist.org/packages/bsomeshwer/firewall) -->
+[![Build Status](https://travis-ci.com/bsomeshwer/firewall.svg?branch=master)](https://travis-ci.com/bsomeshwer/firewall)
 [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE)
 [![Code Quality](https://img.shields.io/scrutinizer/g/bsomeshwer/firewall.svg?style=flat-square)](https://scrutinizer-ci.com/g/bsomeshwer/firewall/?branch=master)
-![Code Quality](https://www.code-inspector.com/project/8535/score/svg)
+![Code Quality Score](https://www.code-inspector.com/project/8535/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/8535/status/svg)
-[![Build Status](https://travis-ci.com/bsomeshwer/firewall.svg?branch=master)](https://travis-ci.com/bsomeshwer/firewall)
+[![StyleCI](https://github.styleci.io/repos/144050060/shield?branch=master)](https://github.styleci.io/repos/144050060)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/bsomeshwer/firewall/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+
+[![codecov](https://codecov.io/gh/bsomeshwer/firewall/branch/master/graph/badge.svg)](https://codecov.io/gh/bsomeshwer/firewall)
 [![Coverage Status](https://coveralls.io/repos/github/bsomeshwer/firewall/badge.svg?branch=master)](https://coveralls.io/github/bsomeshwer/firewall?branch=master)
 [![Total Downloads](https://poser.pugx.org/someshwer/firewall/downloads.svg)](https://packagist.org/packages/someshwer/firewall)
-[![codecov](https://codecov.io/gh/bsomeshwer/firewall/branch/master/graph/badge.svg)](https://codecov.io/gh/bsomeshwer/firewall)
 [![Latest Stable Version](https://poser.pugx.org/someshwer/firewall/v/stable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Latest Unstable Version](https://poser.pugx.org/someshwer/firewall/v/unstable.svg)](https://packagist.org/packages/someshwer/firewall)
-[![StyleCI](https://github.styleci.io/repos/144050060/shield?branch=master)](https://github.styleci.io/repos/144050060)
-
 
 Firewall enables us to whitelist and blacklist IP addresses for LARAVEL applications. 
 This package detects an unknown ip addresses using filtering mechanism based on whitelist and blacklist arrays and configuration options.
