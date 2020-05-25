@@ -6,6 +6,7 @@
 [![codecov](https://codecov.io/gh/bsomeshwer/firewall/branch/master/graph/badge.svg)](https://codecov.io/gh/bsomeshwer/firewall)
 [![Latest Stable Version](https://poser.pugx.org/someshwer/firewall/v/stable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Latest Unstable Version](https://poser.pugx.org/someshwer/firewall/v/unstable.svg)](https://packagist.org/packages/someshwer/firewall)
+[![StyleCI](https://github.styleci.io/repos/144050060/shield?branch=master)](https://github.styleci.io/repos/144050060)
 
 
 Firewall enables us to whitelist and blacklist IP addresses for LARAVEL applications. 
