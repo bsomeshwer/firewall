@@ -65,8 +65,8 @@ class Firewall
             If you have added them to whitelist only the request from the whitelisted ips can be accepted 
             and remaining all requests will be blocked by the firewall. If you set both black and whitelist 
             to TRUE then in that case the preference will be given to blacklist',
-            'latest_release' => '1.2.4',
-            'stable_version' => '1.2.4',
+            'latest_release' => '2.2.1',
+            'stable_version' => '2.2.1',
             'author' => 'Someshwer Bandapally<bsomeshwer89@gmail.com>'
         ];
     }
