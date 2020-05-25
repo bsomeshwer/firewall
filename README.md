@@ -1,6 +1,7 @@
 # Firewall
 
 [![Package version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg)](https://packagist.org/packages/bsomeshwer/firewall)
+https://img.shields.io/packagist/v/bsomeshwer/firwall.svg?style=flat
 [![Latest Stable Version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg?style=flat-square)](https://packagist.org/packages/bsomeshwer/firewall)
 [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE)
 [![Code Quality](https://img.shields.io/scrutinizer/g/bsomeshwer/firewall.svg?style=flat-square)](https://scrutinizer-ci.com/g/bsomeshwer/firewall/?branch=master)
