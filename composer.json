@@ -22,10 +22,10 @@
     "source": "https://github.com/bsomeshwer/firewall"
   },
   "require": {
-    "php": ">=7.1"
+    "php": "^7.1 || ^7.2 || >=7.3"
   },
   "require-dev": {
-    "phpunit/phpunit": ">=7.0"
+    "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
   },
   "autoload": {
     "psr-4": {
