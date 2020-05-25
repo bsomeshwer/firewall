@@ -6,7 +6,7 @@ php:
     - 7.3
 #   - hhvm # on Trusty only
 #   - nightly
-#   - hhvm
+    - hhvm
 #   - hhvm-nightly
     - nightly
 
