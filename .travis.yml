@@ -11,7 +11,8 @@ php:
 before_script:
 #    - curl -sSfL -o ~/.phpenv/versions/hhvm/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar
     - travis_retry composer self-update
-    - travis_retry composer install --no-interaction --prefer-source --master
+#    - travis_retry composer install --no-interaction --prefer-source --dev
+    - travis_retry composer install
 
 script:
    - vendor/bin/phpunit --coverage-clover=coverage.xml
