@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.com/bsomeshwer/firewall.svg?branch=master)](https://travis-ci.com/bsomeshwer/firewall)
 [![Coverage Status](https://coveralls.io/repos/github/bsomeshwer/firewall/badge.svg?branch=master)](https://coveralls.io/github/bsomeshwer/firewall?branch=master)
 [![Total Downloads](https://poser.pugx.org/someshwer/firewall/downloads.svg)](https://packagist.org/packages/someshwer/firewall)
+[![codecov](https://codecov.io/gh/bsomeshwer/firewall/branch/master/graph/badge.svg)](https://codecov.io/gh/bsomeshwer/firewall)
 [![Latest Stable Version](https://poser.pugx.org/someshwer/firewall/v/stable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Latest Unstable Version](https://poser.pugx.org/someshwer/firewall/v/unstable.svg)](https://packagist.org/packages/someshwer/firewall)
 
