@@ -1,2 +1,7 @@
 codecov:
   token: 272170b4-a284-4efe-8f3c-8699899fd10f
+  coverage:
+    precision: 2
+    round: nearest
+    range: "40...70"
+    ignore: 
