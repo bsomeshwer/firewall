@@ -1,8 +1,6 @@
 # Firewall
 
-<!-- [![Latest Stable Version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg?style=flat-square)](https://packagist.org/packages/bsomeshwer/firewall) -->
 [![Build Status](https://travis-ci.com/bsomeshwer/firewall.svg?branch=master)](https://travis-ci.com/bsomeshwer/firewall)
-<!-- [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE) -->
 [![Code Quality](https://img.shields.io/scrutinizer/g/bsomeshwer/firewall.svg?style=flat-square)](https://scrutinizer-ci.com/g/bsomeshwer/firewall/?branch=master)
 ![Code Quality Score](https://www.code-inspector.com/project/8535/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/8535/status/svg)
@@ -15,12 +13,13 @@
 [![Latest Stable Version](https://poser.pugx.org/someshwer/firewall/v/stable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Latest Unstable Version](https://poser.pugx.org/someshwer/firewall/v/unstable.svg)](https://packagist.org/packages/someshwer/firewall)
 [![Total Downloads](https://poser.pugx.org/someshwer/firewall/downloads.svg)](https://packagist.org/packages/someshwer/firewall)
+[![composer.lock](https://poser.pugx.org/someshwer/firewall/composerlock)](//packagist.org/packages/someshwer/firewall)
+<!-- [![Latest Stable Version](https://img.shields.io/packagist/v/bsomeshwer/firewall.svg?style=flat-square)](https://packagist.org/packages/bsomeshwer/firewall) -->
+<!-- [![License](https://img.shields.io/badge/license-BSD_3_Clause-brightgreen.svg?style=flat-square)](LICENSE) -->
 <!-- [![Daily Downloads](https://poser.pugx.org/someshwer/firewall/d/daily)](//packagist.org/packages/someshwer/firewall) -->
 <!-- [![.gitattributes](https://poser.pugx.org/someshwer/firewall/gitattributes)](//packagist.org/packages/someshwer/firewall) -->
-[![composer.lock](https://poser.pugx.org/someshwer/firewall/composerlock)](//packagist.org/packages/someshwer/firewall)
 <!-- [![Suggesters](https://poser.pugx.org/someshwer/firewall/suggesters)](//packagist.org/packages/someshwer/firewall) -->
 <!-- [![Dependents](https://poser.pugx.org/someshwer/firewall/dependents)](//packagist.org/packages/someshwer/firewall) -->
-
 
 Firewall enables us to whitelist and blacklist IP addresses for LARAVEL applications. 
 This package detects an unknown ip addresses using filtering mechanism based on whitelist and blacklist arrays and configuration options.
